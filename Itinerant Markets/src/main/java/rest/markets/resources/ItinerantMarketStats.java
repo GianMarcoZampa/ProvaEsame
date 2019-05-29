@@ -13,11 +13,7 @@ public class ItinerantMarketStats {
 		this.cessations = cessations;
 	}
 	
-	public ItinerantMarketStats() {
-		this.total = 0;
-		this.attivations =  0;
-		this.cessations =  0;
-	}
+	public ItinerantMarketStats() {}
 
 	// Getters and Setters
 	public int getTotal() {
@@ -49,6 +45,16 @@ public class ItinerantMarketStats {
 	public String toString() {
 		return "ItinerantMarketStats [total=" + total + ", attivations=" + attivations + ", cessations=" + cessations
 				+ "]";
+	}
+
+	// Equals
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof ItinerantMarketStats)) return false;
+		if(this.total != ((ItinerantMarketStats) obj).getTotal()) return false;
+		if(this.attivations != ((ItinerantMarketStats) obj).getAttivations()) return false;
+		if(this.cessations != ((ItinerantMarketStats) obj).getCessations()) return false;
+		return true;
 	}
 
 }
