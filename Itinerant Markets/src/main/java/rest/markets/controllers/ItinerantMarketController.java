@@ -21,13 +21,7 @@ public class ItinerantMarketController {
 	//tornai metadati della classe ItinerantMarket
 	@GetMapping("/metadata")
 	public ResponseEntity<Object> showMetadata(){
-		@ResponseBody("comune : string\n"+
-					"provincia : string\n"+
-					"year : integer\n"+
-					"stats : ItinerantStats\n"+
-					"	ItinerantStats.total : integer\n"+
-					"	ItinerantStats.attivation : integer\n"+
-					"	ItinerantStats.cessation : integer\n");
+	
 		return ResponseEntity(HttpStatus.OK);
 		
 	}
