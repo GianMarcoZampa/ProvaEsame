@@ -21,8 +21,7 @@ public class ItinerantMarketController {
 	@GetMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> getAll(){
 		Vector<ItinerantMarket> itMarket= itinerantMarketService.getAll(); 
-		if (itMarket.isEmpty())
-			throw new NullPointerException();
+		if (itMarket.isEmpty())	throw new NullPointerException();
 		return new ResponseEntity<Vector<ItinerantMarket>>(itMarket,HttpStatus.OK);
 	}
 	
@@ -31,8 +30,7 @@ public class ItinerantMarketController {
 	@PostMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> filterItinerantMarket(@RequestBody ItinerantMarket requestedIM) {
 		Vector<ItinerantMarket> iMa = itinerantMarketService.getRequestedItinerantMarket(requestedIM);
-		if (iMa.isEmpty()) 
-			throw new ResourceNotFoundException();
+		if (iMa.isEmpty()) throw new ResourceNotFoundException();
 		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
 	}
 	
