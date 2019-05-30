@@ -25,13 +25,13 @@ public class ItinerantMarketController {
 		return new ResponseEntity<Vector<ItinerantMarket>>(itMarket,HttpStatus.OK);
 	}
 	
-	//crea un oggetto ItinerantMarket con le specifiche inserite nel Body
+	// This method create a vector that contains the elements the have the same 
+	// parameters of the body request
 	@PostMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ItinerantMarket> filterItinerantMarket(@RequestBody ItinerantMarket requestedIM) {
-		ItinerantMarket iMa = itinerantMarketService.getItinerantMarket(requestedIM);
-		if (iMa.equals(null))
-			return new ResponseEntity<ItinerantMarket>(HttpStatus.NOT_FOUND);
-		return new ResponseEntity<ItinerantMarket>(iMa, HttpStatus.OK);
+	public ResponseEntity<Vector<ItinerantMarket>> filterItinerantMarket(@RequestBody ItinerantMarket requestedIM) {
+		Vector<ItinerantMarket> iMa = itinerantMarketService.getRequestedItinerantMarket(requestedIM);
+		if (iMa.equals(null)) return new ResponseEntity<Vector<ItinerantMarket>>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
 	
 		}
 	
