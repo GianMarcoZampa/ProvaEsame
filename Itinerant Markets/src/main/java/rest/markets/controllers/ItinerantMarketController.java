@@ -19,15 +19,21 @@ public class ItinerantMarketController {
 	
 	@GetMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> getAll(){
-		return new ResponseEntity<Vector<ItinerantMarket>>(itinerantMarketService.getAll(),HttpStatus.OK);
+		Vector<ItinerantMarket> itMarket= itinerantMarketService.getAll(); 
+		if (itMarket.isEmpty())
+			return new ResponseEntity<Vector<ItinerantMarket>>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Vector<ItinerantMarket>>(itMarket,HttpStatus.OK);
 	}
 	
 	//crea un oggetto ItinerantMarket con le specifiche inserite nel Body
 	@PostMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ItinerantMarket> filterItinerantMarket(@RequestBody ItinerantMarket itinerantMarket) {
-		
-		return new ResponseEntity<ItinerantMarket>(itinerantMarket, HttpStatus.OK);
+	public ResponseEntity<ItinerantMarket> filterItinerantMarket(@RequestBody ItinerantMarket requestedIM) {
+		ItinerantMarket iMa = itinerantMarketService.getItinerantMarket(requestedIM);
+		if (iMa.equals(null))
+			return new ResponseEntity<ItinerantMarket>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<ItinerantMarket>(iMa, HttpStatus.OK);
 	
 		}
-		
+	
+	
 }
