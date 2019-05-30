@@ -34,8 +34,7 @@ public class ItinerantMarketController {
 		if (iMa.isEmpty()) 
 			throw new ResourceNotFoundException();
 		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
-	
-		}
+	}
 	
 	
 }
