@@ -103,5 +103,17 @@ public class ItinerantMarket {
 		else return true;
 	}
 
+	// This method is similar to equals but it excludes null fields
+	public boolean paramEquals(Object obj) {
+		if(!(obj instanceof ItinerantMarket)) return false;
+		if(!(((ItinerantMarket) obj).getComune()==null) && !(this.comune.equals(((ItinerantMarket) obj).getComune()))) return false;
+		if(!(((ItinerantMarket) obj).getProvincia()==null) && !(this.provincia.equals(((ItinerantMarket) obj).getProvincia()))) return false;
+		if(!(((ItinerantMarket) obj).getYear()==0) && this.year != ((ItinerantMarket) obj).getYear()) return false;
+		if(!(((ItinerantMarket) obj).getTotalStats()==null) && !(this.totalStats.equals(((ItinerantMarket) obj).getTotalStats()))) return false;
+		if(!(((ItinerantMarket) obj).getFoodStats()==null) && !(this.foodStats.equals(((ItinerantMarket) obj).getFoodStats()))) return false;
+		if(!(((ItinerantMarket) obj).getNotFoodStats()==null) && !(this.notFoodStats.equals(((ItinerantMarket) obj).getNotFoodStats()))) return false;
+		if(!(((ItinerantMarket) obj).getProdStats()==null) && !(this.prodStats.equals(((ItinerantMarket) obj).getProdStats()))) return false;
+		else return true;
+	}
 	
 }

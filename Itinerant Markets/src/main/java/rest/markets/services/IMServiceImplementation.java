@@ -96,18 +96,20 @@ public class IMServiceImplementation implements ItinerantMarketService {
 	
 	// This method returns the requested ItinerantMarket if it is present in the file
 	@Override
-	public ItinerantMarket getItinerantMarket(ItinerantMarket requestedIM) {
+	public Vector<ItinerantMarket> getRequestedItinerantMarket(ItinerantMarket requestedIM) {
+		
+		Vector<ItinerantMarket> itMaVec = new Vector<ItinerantMarket>();
 		
 		// If the list is empty a new one is created form the file
 		if(itMaList.isEmpty()) createList();
 		
-		// For-each cycle if it found the requested ItinerantMarket returns that value
-		// else return null
+		// For-each cycle if it found an ItinerantMarket that accomplish the requested
+		// property, it add that value to the vector itMaVec
 		for(ItinerantMarket itMarket:itMaList) {
-			if(requestedIM.equals(itMarket)) return itMarket;
+			if(itMarket.paramEquals(requestedIM)) itMaVec.add(itMarket);
 		}
 		
-		return null;
+		return itMaVec;
 	}
 
 	// This method return the entire list of ItinerantMarket

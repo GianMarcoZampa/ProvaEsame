@@ -6,8 +6,8 @@ import rest.markets.resources.ItinerantMarket;
 
 public interface ItinerantMarketService {
 	
-	ItinerantMarket getItinerantMarket(ItinerantMarket requestedIM);
-
 	Vector<ItinerantMarket> getAll();
+
+	Vector<ItinerantMarket> getRequestedItinerantMarket(ItinerantMarket requestedIM);
 
 }
