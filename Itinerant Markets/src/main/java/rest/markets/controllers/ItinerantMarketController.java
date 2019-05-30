@@ -24,7 +24,7 @@ public class ItinerantMarketController {
 	ItinerantMarketService itinerantMarketService;
 	
 	@GetMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vector<ItinerantMarket>> getAll(){
+	public ResponseEntity<Vector<ItinerantMarket>> getAll() {
 		Vector<ItinerantMarket> itMarket= itinerantMarketService.getAll(); 
 		if (itMarket.isEmpty())	throw new NullPointerException();
 		return new ResponseEntity<Vector<ItinerantMarket>>(itMarket,HttpStatus.OK);
@@ -40,17 +40,21 @@ public class ItinerantMarketController {
 	}
 	
 	@GetMapping(path = "/getdata", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vector<ItinerantMarket>> filterGETItinerantMarket(@RequestParam String filter )
+	public ResponseEntity<Vector<ItinerantMarket>> filterGETItinerantMarket(@RequestParam String filter)
 			throws JsonParseException, JsonMappingException, IOException {
 		
 		ObjectMapper obMAP = new ObjectMapper();
 		ItinerantMarket requestedIM = obMAP.readValue(filter, ItinerantMarket.class);
 		Vector<ItinerantMarket> iMa = itinerantMarketService.getRequestedItinerantMarket(requestedIM);
 		
-		if (iMa.isEmpty()) 
-			throw new ResourceNotFoundException();
+		if (iMa.isEmpty()) throw new ResourceNotFoundException();
 		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
 	}
 	
+	@GetMapping(path = "/metadata", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> getMetadata() {
+		itinerantMarketService.getMetadata();
+		return new ResponseEntity<Object>(HttpStatus.OK);
+	}
 	
 }

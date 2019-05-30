@@ -9,5 +9,7 @@ public interface ItinerantMarketService {
 	Vector<ItinerantMarket> getAll();
 
 	Vector<ItinerantMarket> getRequestedItinerantMarket(ItinerantMarket requestedIM);
+	
+	void getMetadata();
 
 }

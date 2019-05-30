@@ -7,11 +7,19 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
 
+
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.jsonSchema.*;
+import com.fasterxml.jackson.module.jsonSchema.factories.SchemaFactoryWrapper;
 
 import rest.markets.ItinerantMarketsApplication;
 import rest.markets.resources.ItinerantMarket;
 import rest.markets.resources.ItinerantMarketStats;
+
 
 @Service
 public class IMServiceImplementation implements ItinerantMarketService {
@@ -120,6 +128,24 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		if(itMaList.isEmpty()) createList();
 		
 		return this.itMaList;
+	}
+
+	@Override
+	public void getMetadata() {
+		ObjectMapper mapper = new ObjectMapper();
+        SchemaFactoryWrapper visitor = new SchemaFactoryWrapper();
+        try {
+			mapper.acceptJsonFormatVisitor(ItinerantMarket.class, visitor);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		}
+        JsonSchema schema = visitor.finalSchema();
+        try {
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(schema));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return;
 	}
 	
 }
