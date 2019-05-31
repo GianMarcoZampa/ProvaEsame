@@ -16,6 +16,7 @@ import com.fasterxml.jackson.module.jsonSchema.*;
 import com.fasterxml.jackson.module.jsonSchema.factories.SchemaFactoryWrapper;
 
 import rest.markets.ItinerantMarketsApplication;
+import rest.markets.exceptions.NotExistingFieldException;
 import rest.markets.resources.ItinerantMarket;
 import rest.markets.resources.ItinerantMarketStats;
 import rest.markets.utils.FieldStatistic;
@@ -164,7 +165,7 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		for(String j:numFieldRequested) {
 			
 		// Switch field for every existing field in ItinerantMarket 
-			switch(j) {
+		switch(j) {
 			case "year": 
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getYear());
@@ -239,8 +240,9 @@ public class IMServiceImplementation implements ItinerantMarketService {
 				}
 				returnStatistics.add(new StringFieldStatistic(j, stats.repetition(toStringStats)));
 				break;
-			default: return null;//throw NotExistinFieldException();
+			default: throw new NotExistingFieldException();
 			}
+		
 		}
 		return returnStatistics;
 	}
