@@ -7,10 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.jsonSchema.*;
@@ -19,10 +18,15 @@ import com.fasterxml.jackson.module.jsonSchema.factories.SchemaFactoryWrapper;
 import rest.markets.ItinerantMarketsApplication;
 import rest.markets.resources.ItinerantMarket;
 import rest.markets.resources.ItinerantMarketStats;
+import rest.markets.utils.FieldStatistic;
+import rest.markets.utils.Stats;
 
 
 @Service
 public class IMServiceImplementation implements ItinerantMarketService {
+	
+	@Autowired
+	Stats stats;
 	
 	// This Vector contains all the data from the file ItinerantMarket.csv
 	Vector<ItinerantMarket> itMaList = new Vector<ItinerantMarket>();
@@ -130,8 +134,9 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		return this.itMaList;
 	}
 
+	// This method creates a JsonSchema from ItinerantMarket.class
 	@Override
-	public void getMetadata() {
+	public JsonSchema getMetadata() {
 		ObjectMapper mapper = new ObjectMapper();
         SchemaFactoryWrapper visitor = new SchemaFactoryWrapper();
         try {
@@ -140,12 +145,30 @@ public class IMServiceImplementation implements ItinerantMarketService {
 			e.printStackTrace();
 		}
         JsonSchema schema = visitor.finalSchema();
-        try {
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(schema));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return;
+		return schema;
 	}
 	
+	// This method obtains statistics from the input field
+	public Vector<FieldStatistic> getStats(String field) {
+		
+		String msg = new String("not available for this field");
+		Vector<FieldStatistic> returnStatistics = new Vector<FieldStatistic>();
+		Vector<Double> toNumStats = new Vector<Double>();
+		
+		// If the list is empty a new one is created form the file
+		if(itMaList.isEmpty()) createList();
+		
+		// Switch field for every existing field in ItinerantMarket 
+		switch(field) {
+		case "year": 
+			for(ItinerantMarket i: itMaList) {
+				toNumStats.add((double)i.getYear());
+			}
+			returnStatistics.add(new FieldStatistic("year", msg, ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), msg));
+			break;
+		default: return null;//throw NotExistinFieldException();
+		}
+		
+		return returnStatistics;
+	}
 }

@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.jsonSchema.JsonSchema;
 
 import rest.markets.resources.ItinerantMarket;
 import rest.markets.services.ItinerantMarketService;
+import rest.markets.utils.FieldStatistic;
 
 @RestController
 public class ItinerantMarketController {
@@ -52,9 +54,16 @@ public class ItinerantMarketController {
 	}
 	
 	@GetMapping(path = "/metadata", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> getMetadata() {
-		itinerantMarketService.getMetadata();
-		return new ResponseEntity<Object>(HttpStatus.OK);
+	public ResponseEntity<JsonSchema> getMetadata() {
+		JsonSchema jSchema = itinerantMarketService.getMetadata();
+		return new ResponseEntity<JsonSchema>(jSchema, HttpStatus.OK);
+	}
+	
+	@GetMapping(path = "/stats", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> getStats(@RequestParam String field) {
+		Vector<FieldStatistic> fStat = itinerantMarketService.getStats(field);
+		return new ResponseEntity<Object>(fStat, HttpStatus.OK);
+		
 	}
 	
 }
