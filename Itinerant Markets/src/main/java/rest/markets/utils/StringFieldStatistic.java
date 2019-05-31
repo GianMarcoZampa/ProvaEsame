@@ -12,6 +12,7 @@ public class StringFieldStatistic extends FieldStatistic {
 		this.repetition = repetition;
 	}
 
+	// Getters and Setters
 	public HashMap<String, Integer> getRepetition() {
 		return repetition;
 	}

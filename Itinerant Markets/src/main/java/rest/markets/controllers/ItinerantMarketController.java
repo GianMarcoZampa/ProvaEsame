@@ -63,7 +63,8 @@ public class ItinerantMarketController {
 		return new ResponseEntity<JsonSchema>(jSchema, HttpStatus.OK);
 	}
 	
-	// This method returns statistics of the requested fields
+	// This method returns statistics of the requested fields (more than one argument must be
+	// separated with ',')
 	@GetMapping(path = "/stats", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<FieldStatistic>> getStats(@RequestParam String field) {
 		Vector<FieldStatistic> fStat = itinerantMarketService.getStats(field);

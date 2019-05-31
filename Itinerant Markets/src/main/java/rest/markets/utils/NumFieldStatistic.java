@@ -16,7 +16,7 @@ public class NumFieldStatistic extends FieldStatistic {
 		this.sum = sum;
 	}
 	
-
+	// Getters and Setters
 	public String getAvg() {
 		return avg;
 	}

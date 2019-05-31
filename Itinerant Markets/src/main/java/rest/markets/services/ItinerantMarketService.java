@@ -10,11 +10,8 @@ import rest.markets.utils.FieldStatistic;
 public interface ItinerantMarketService {
 	
 	Vector<ItinerantMarket> getAll();
-
 	Vector<ItinerantMarket> getRequestedItinerantMarket(ItinerantMarket requestedIM);
-	
 	JsonSchema getMetadata();
-	
 	Vector<FieldStatistic> getStats(String requestedStats);
 
 }
