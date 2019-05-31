@@ -1,5 +1,6 @@
 package rest.markets.utils;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 import org.springframework.stereotype.Service;
@@ -42,6 +43,22 @@ public class Stats implements StatisticCalcolus {
 			sum += i;
 		}
 		return sum;
+	}
+
+	// Return an HashMap which contains the number of repetitions(value) for each String(key)
+	@Override
+	public HashMap<String, Integer> repetition(Vector<String> toRep) {
+		Integer integer;
+		HashMap<String, Integer> returnHashValue = new HashMap<String, Integer>();
+		for(String i: toRep) {
+			if(returnHashValue.containsKey(i)) {
+				integer = returnHashValue.get(i);
+				integer += 1;
+				returnHashValue.put(i, integer);
+			}
+			else returnHashValue.put(i, 0);
+		}
+		return returnHashValue;
 	}
 
 }

@@ -25,6 +25,7 @@ public class ItinerantMarketController {
 	@Autowired
 	ItinerantMarketService itinerantMarketService;
 	
+	// This method returns all the object in the service
 	@GetMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> getAll() {
 		Vector<ItinerantMarket> itMarket= itinerantMarketService.getAll(); 
@@ -32,8 +33,8 @@ public class ItinerantMarketController {
 		return new ResponseEntity<Vector<ItinerantMarket>>(itMarket,HttpStatus.OK);
 	}
 	
-	// This method create a vector that contains the elements the have the same 
-	// parameters of the body request
+	// This method creates a vector that contains the elements the have the same 
+	// parameters of the body request with a POST request
 	@PostMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> filterItinerantMarket(@RequestBody ItinerantMarket requestedIM) {
 		Vector<ItinerantMarket> iMa = itinerantMarketService.getRequestedItinerantMarket(requestedIM);
@@ -41,6 +42,8 @@ public class ItinerantMarketController {
 		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
 	}
 	
+	// This method creates a vector that contains the elements the have the same 
+	// parameters of the body request with a GET request
 	@GetMapping(path = "/getdata", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> filterGETItinerantMarket(@RequestParam String filter)
 			throws JsonParseException, JsonMappingException, IOException {
@@ -53,17 +56,18 @@ public class ItinerantMarketController {
 		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
 	}
 	
+	// This method returns a jsonSchema of the ItinerantMarket class
 	@GetMapping(path = "/metadata", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<JsonSchema> getMetadata() {
 		JsonSchema jSchema = itinerantMarketService.getMetadata();
 		return new ResponseEntity<JsonSchema>(jSchema, HttpStatus.OK);
 	}
 	
+	// This method returns statistics of the requested fields
 	@GetMapping(path = "/stats", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> getStats(@RequestParam String field) {
+	public ResponseEntity<Vector<FieldStatistic>> getStats(@RequestParam String field) {
 		Vector<FieldStatistic> fStat = itinerantMarketService.getStats(field);
-		return new ResponseEntity<Object>(fStat, HttpStatus.OK);
-		
+		return new ResponseEntity<Vector<FieldStatistic>>(fStat, HttpStatus.OK);	
 	}
 	
 }
