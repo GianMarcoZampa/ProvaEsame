@@ -7,14 +7,28 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.jsonSchema.*;
+import com.fasterxml.jackson.module.jsonSchema.factories.SchemaFactoryWrapper;
 
 import rest.markets.ItinerantMarketsApplication;
 import rest.markets.resources.ItinerantMarket;
 import rest.markets.resources.ItinerantMarketStats;
+import rest.markets.utils.FieldStatistic;
+import rest.markets.utils.NumFieldStatistic;
+import rest.markets.utils.Stats;
+import rest.markets.utils.StringFieldStatistic;
+
 
 @Service
 public class IMServiceImplementation implements ItinerantMarketService {
+	
+	@Autowired
+	Stats stats;
 	
 	// This Vector contains all the data from the file ItinerantMarket.csv
 	Vector<ItinerantMarket> itMaList = new Vector<ItinerantMarket>();
@@ -121,5 +135,113 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		
 		return this.itMaList;
 	}
+
+	// This method creates a JsonSchema from ItinerantMarket.class
+	@Override
+	public JsonSchema getMetadata() {
+		ObjectMapper mapper = new ObjectMapper();
+        SchemaFactoryWrapper visitor = new SchemaFactoryWrapper();
+        try {
+			mapper.acceptJsonFormatVisitor(ItinerantMarket.class, visitor);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		}
+        JsonSchema schema = visitor.finalSchema();
+		return schema;
+	}
 	
+	// This method obtains statistics from the input field
+	public Vector<FieldStatistic> getStats(String field) {
+		String[] numFieldRequested = field.split(",");
+		String msg = new String("not available in this field");
+		Vector<FieldStatistic> returnStatistics = new Vector<FieldStatistic>();
+		Vector<Double> toNumStats = new Vector<Double>();
+		Vector<String> toStringStats = new Vector<String>();
+		
+		// If the list is empty a new one is created form the file
+		if(itMaList.isEmpty()) createList();
+		
+		for(String j:numFieldRequested) {
+			
+		// Switch field for every existing field in ItinerantMarket 
+			switch(j) {
+			case "year": 
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getYear());
+				}
+				returnStatistics.add(new NumFieldStatistic(j, msg, ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), msg));
+				break;
+			case "totalStats":
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getTotalStats().getTotal());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getTotalStats().getAttivations());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getTotalStats().getCessations());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				break;
+			case "foodStats":
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getFoodStats().getTotal());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getFoodStats().getAttivations());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getFoodStats().getCessations());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				break;
+			case "notFoodStats":
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getNotFoodStats().getTotal());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getNotFoodStats().getAttivations());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getNotFoodStats().getCessations());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				break;
+			case "prodStats":
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getProdStats().getTotal());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getProdStats().getAttivations());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				for(ItinerantMarket i: itMaList) {
+					toNumStats.add((double)i.getProdStats().getCessations());
+				}
+				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				break;
+			case "comune":
+				for(ItinerantMarket i: itMaList) {
+					toStringStats.add(i.getComune());
+				}
+				returnStatistics.add(new StringFieldStatistic(j, stats.repetition(toStringStats)));
+				break;
+			case "provincia":
+				for(ItinerantMarket i: itMaList) {
+					toStringStats.add(i.getProvincia());
+				}
+				returnStatistics.add(new StringFieldStatistic(j, stats.repetition(toStringStats)));
+				break;
+			default: return null;//throw NotExistinFieldException();
+			}
+		}
+		return returnStatistics;
+	}
 }
