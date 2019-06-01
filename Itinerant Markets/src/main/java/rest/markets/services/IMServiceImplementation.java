@@ -140,6 +140,7 @@ public class IMServiceImplementation implements ItinerantMarketService {
 	// This method creates a JsonSchema from ItinerantMarket.class
 	@Override
 	public JsonSchema getMetadata() {
+		
 		ObjectMapper mapper = new ObjectMapper();
         SchemaFactoryWrapper visitor = new SchemaFactoryWrapper();
         try {
@@ -152,7 +153,8 @@ public class IMServiceImplementation implements ItinerantMarketService {
 	}
 	
 	// This method obtains statistics from the input field
-	public Vector<FieldStatistic> getStats(String field) {
+	public Vector<FieldStatistic> getStats(String field) throws NotExistingFieldException {
+		
 		String[] numFieldRequested = field.split(",");
 		String msg = new String("not available in this field");
 		Vector<FieldStatistic> returnStatistics = new Vector<FieldStatistic>();
@@ -240,7 +242,7 @@ public class IMServiceImplementation implements ItinerantMarketService {
 				}
 				returnStatistics.add(new StringFieldStatistic(j, stats.repetition(toStringStats)));
 				break;
-			default: throw new NotExistingFieldException();
+			default: throw new NotExistingFieldException("Not Existing Field in request");
 			}
 		
 		}
