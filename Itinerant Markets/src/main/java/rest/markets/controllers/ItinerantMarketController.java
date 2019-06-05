@@ -18,7 +18,9 @@ import com.fasterxml.jackson.module.jsonSchema.JsonSchema;
 
 import rest.markets.resources.ItinerantMarket;
 import rest.markets.services.ItinerantMarketService;
-import rest.markets.utils.FieldStatistic;
+import rest.markets.utils.statistics.FieldStatistic;
+import rest.markets.utils.filters.RequestConditionalFilter;
+import rest.markets.utils.filters.RequestLogicalFilter;
 
 @RestController
 public class ItinerantMarketController {
@@ -75,6 +77,25 @@ public class ItinerantMarketController {
 	public ResponseEntity<Vector<FieldStatistic>> getStats(@RequestParam String field) {
 		Vector<FieldStatistic> fStat = itinerantMarketService.getStats(field);
 		return new ResponseEntity<Vector<FieldStatistic>>(fStat, HttpStatus.OK);	
+	}
+
+	// This method requests a filter object for each field and it returns the complete list of
+	// itinerant markets with this filter
+	@PostMapping(path = "/data/filter", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Vector<ItinerantMarket>> filterData(@RequestBody Vector<RequestConditionalFilter> filters) {
+		Vector<ItinerantMarket> iMa = itinerantMarketService.getConditionalFilter(filters);
+		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
+	}
+	
+	//Vector<ItinerantMarket> filters, boolean in
+	@PostMapping(path = "/datai", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Vector<ItinerantMarket>> filtersItinerantMarket(@RequestBody RequestLogicalFilter filter) 
+			throws ResourceNotFoundException {
+		//RequestLogicalFilter filter = new RequestLogicalFilter(filters,in);
+		System.out.println(filter.getParam().toString() + filter.getIn());
+		Vector<ItinerantMarket> iMa = itinerantMarketService.getLogicalFilter(filter);
+		if (iMa.isEmpty()) throw new ResourceNotFoundException("No resources correspinding requested criteria");
+		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
 	}
 	
 }

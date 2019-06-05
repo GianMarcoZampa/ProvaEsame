@@ -1,4 +1,4 @@
-package rest.markets.utils;
+package rest.markets.utils.statistics;
 
 import java.util.HashMap;
 import java.util.Vector;

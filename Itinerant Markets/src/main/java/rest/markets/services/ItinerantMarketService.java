@@ -5,7 +5,9 @@ import java.util.Vector;
 import com.fasterxml.jackson.module.jsonSchema.JsonSchema;
 
 import rest.markets.resources.ItinerantMarket;
-import rest.markets.utils.FieldStatistic;
+import rest.markets.utils.statistics.FieldStatistic;
+import rest.markets.utils.filters.RequestConditionalFilter;
+import rest.markets.utils.filters.RequestLogicalFilter;
 
 public interface ItinerantMarketService {
 	
@@ -13,5 +15,6 @@ public interface ItinerantMarketService {
 	Vector<ItinerantMarket> getRequestedItinerantMarket(ItinerantMarket requestedIM);
 	JsonSchema getMetadata();
 	Vector<FieldStatistic> getStats(String requestedStats);
-
+	Vector<ItinerantMarket> getConditionalFilter(Vector<RequestConditionalFilter> requestedFilter);
+	Vector<ItinerantMarket> getLogicalFilter(RequestLogicalFilter requestedFilter);
 }

@@ -17,12 +17,12 @@ import com.fasterxml.jackson.module.jsonSchema.factories.SchemaFactoryWrapper;
 
 import rest.markets.ItinerantMarketsApplication;
 import rest.markets.exceptions.NotExistingFieldException;
-import rest.markets.resources.ItinerantMarket;
-import rest.markets.resources.ItinerantMarketStats;
-import rest.markets.utils.FieldStatistic;
-import rest.markets.utils.NumFieldStatistic;
-import rest.markets.utils.Stats;
-import rest.markets.utils.StringFieldStatistic;
+import rest.markets.exceptions.NotExistingFilterException;
+import rest.markets.resources.*;
+import rest.markets.utils.filters.Filter;
+import rest.markets.utils.filters.RequestConditionalFilter;
+import rest.markets.utils.filters.RequestLogicalFilter;
+import rest.markets.utils.statistics.*;
 
 
 @Service
@@ -30,6 +30,8 @@ public class IMServiceImplementation implements ItinerantMarketService {
 	
 	@Autowired
 	Stats stats;
+	@Autowired
+	Filter filter;
 	
 	// This Vector contains all the data from the file ItinerantMarket.csv
 	Vector<ItinerantMarket> itMaList = new Vector<ItinerantMarket>();
@@ -118,12 +120,8 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		// If the list is empty a new one is created form the file
 		if(itMaList.isEmpty()) createList();
 		
-		// For-each cycle if it found an ItinerantMarket that accomplish the requested
-		// property, it add that value to the vector itMaVec
-		for(ItinerantMarket itMarket:itMaList) {
-			if(itMarket.paramEquals(requestedIM)) itMaVec.add(itMarket);
-		}
-		
+		// Call filter.in
+		itMaVec = filter.in(requestedIM, true, itMaList);
 		return itMaVec;
 	}
 
@@ -247,5 +245,57 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		
 		}
 		return returnStatistics;
+	}
+
+	@Override
+	public Vector<ItinerantMarket> getConditionalFilter(Vector<RequestConditionalFilter> requestedFilters) throws NotExistingFilterException {						
+		
+		Vector<ItinerantMarket> returnIM;
+
+		// If the list is empty a new one is created form the file
+		if (itMaList.isEmpty())	createList();
+		
+		returnIM = getAll();
+		
+		// for each filter sent from controller this method delete some elements from the returnIM
+		for (RequestConditionalFilter i : requestedFilters) {
+			String filterType = i.getFilterType();
+			String[] filterTypeRequested = filterType.split(",");
+
+			switch (filterTypeRequested[0]) {
+			case ("$gt"):
+				returnIM = filter.gt(Integer.parseInt(filterTypeRequested[1]), i.getEqual(), returnIM,
+						i.getNameField());
+				break;
+			case ("$lt"):
+				returnIM = filter.lt(Integer.parseInt(filterTypeRequested[1]), i.getEqual(), returnIM,
+						i.getNameField());
+				break;
+			case ("$bt"):
+				returnIM = filter.bt(Integer.parseInt(filterTypeRequested[1]), Integer.parseInt(filterTypeRequested[2]),
+						i.getEqual(), returnIM, i.getNameField());
+				break;
+			default:
+				throw new NotExistingFilterException();
+			}
+		}
+		return returnIM;
+	}
+
+	@Override
+	public Vector<ItinerantMarket> getLogicalFilter(RequestLogicalFilter requestedFilter) {
+		
+		Vector<ItinerantMarket> returnIM = new Vector<ItinerantMarket>();
+		
+		// If the list is empty a new one is created form the file
+		if(itMaList.isEmpty()) createList();
+		
+		// Call filter.in
+		for(ItinerantMarket i : requestedFilter.getParam()) {
+			returnIM.addAll(filter.in(i, requestedFilter.getIn(), itMaList));
+			System.out.println(returnIM);
+		}
+		
+		return returnIM;
 	}
 }

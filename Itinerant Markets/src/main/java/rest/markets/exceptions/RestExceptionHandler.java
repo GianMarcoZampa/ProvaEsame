@@ -27,7 +27,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 			return new ResponseEntity<Object>(ex,HttpStatus.NOT_FOUND);
 		}
 		
-		@ExceptionHandler (value = NotExistingFieldException.class)
+		@ExceptionHandler (value = {NotExistingFieldException.class, NotExistingFilterException.class})
 		public ResponseEntity<Object> handleNotExistingFieldException(NotExistingFieldException ex){
 			return new ResponseEntity<Object>(ex,HttpStatus.BAD_REQUEST);
 		}

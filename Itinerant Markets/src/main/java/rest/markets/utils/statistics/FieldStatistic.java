@@ -1,4 +1,4 @@
-package rest.markets.utils;
+package rest.markets.utils.statistics;
 
 public class FieldStatistic {
 	
