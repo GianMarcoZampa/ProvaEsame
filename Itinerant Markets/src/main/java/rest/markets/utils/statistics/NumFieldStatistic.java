@@ -6,14 +6,16 @@ public class NumFieldStatistic extends FieldStatistic {
 	private String min;
 	private String max;
 	private String sum;
+	private String std;
 	
 	// Constructor for numeric fields
-	public NumFieldStatistic(String fieldName, String avg, String min, String max, String sum) {
+	public NumFieldStatistic(String fieldName, String avg, String min, String max, String sum, String std) {
 		super(fieldName);
 		this.avg = avg;
 		this.min = min;
 		this.max = max;
 		this.sum = sum;
+		this.std = std;
 	}
 	
 	// Getters and Setters
@@ -47,5 +49,13 @@ public class NumFieldStatistic extends FieldStatistic {
 
 	public void setSum(String sum) {
 		this.sum = sum;
+	}
+	
+	public String getStd() {
+		return std;
+	}
+
+	public void setStd(String std) {
+		this.std = std;
 	}
 }

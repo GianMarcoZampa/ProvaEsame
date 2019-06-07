@@ -170,63 +170,63 @@ public class IMServiceImplementation implements ItinerantMarketService {
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getYear());
 				}
-				returnStatistics.add(new NumFieldStatistic(j, msg, ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), msg));
+				returnStatistics.add(new NumFieldStatistic(j, msg, ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), msg, msg));
 				break;
 			case "totalStats":
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getTotalStats().getTotal());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getTotalStats().getAttivations());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getTotalStats().getCessations());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				break;
 			case "foodStats":
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getFoodStats().getTotal());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getFoodStats().getAttivations());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getFoodStats().getCessations());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				break;
 			case "notFoodStats":
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getNotFoodStats().getTotal());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getNotFoodStats().getAttivations());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getNotFoodStats().getCessations());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				break;
 			case "prodStats":
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getProdStats().getTotal());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".total", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getProdStats().getAttivations());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".attivations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				for(ItinerantMarket i: itMaList) {
 					toNumStats.add((double)i.getProdStats().getCessations());
 				}
-				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString()));
+				returnStatistics.add(new NumFieldStatistic(j + ".cessations", ((Double)stats.avg(toNumStats)).toString(), ((Double)stats.min(toNumStats)).toString(), ((Double)stats.max(toNumStats)).toString(), ((Double)stats.sum(toNumStats)).toString(), ((Double)stats.std(toNumStats)).toString()));
 				break;
 			case "comune":
 				for(ItinerantMarket i: itMaList) {

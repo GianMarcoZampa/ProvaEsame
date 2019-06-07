@@ -44,6 +44,20 @@ public class Stats implements StatisticCalcolus {
 		}
 		return sum;
 	}
+	
+	// Return the standard deviation of the values in the Vector
+	@Override
+	public double std(Vector<Double> toStd) {
+		double meanValue = avg(toStd);
+		double std = 0;
+		
+		for(double i : toStd) {
+			std += ((i-meanValue)*(i-meanValue));
+		}
+		std = toStd.lastIndexOf(toStd.lastElement());
+		std = Math.sqrt(std);
+		return std;
+	}
 
 	// Return an HashMap which contains the number of repetitions(value) for each String(key)
 	@Override
@@ -60,5 +74,6 @@ public class Stats implements StatisticCalcolus {
 		}
 		return returnHashValue;
 	}
+
 
 }
