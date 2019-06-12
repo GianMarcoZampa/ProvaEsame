@@ -1,6 +1,5 @@
 package rest.markets.controllers;
 
-import java.io.IOException;
 import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.jsonSchema.JsonSchema;
 
 
@@ -36,7 +32,7 @@ public class ItinerantMarketController {
 		return new ResponseEntity<Vector<ItinerantMarket>>(itMarket,HttpStatus.OK);
 	}
 	
-	// This method creates a vector that contains the elements the have the same 
+	/*// This method creates a vector that contains the elements the have the same 
 	// parameters of the body request with a POST request
 	@PostMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> filterItinerantMarket(@RequestBody ItinerantMarket requestedIM) 
@@ -60,7 +56,7 @@ public class ItinerantMarketController {
 		
 		if (iMa.isEmpty()) throw new ResourceNotFoundException("No resources correspinding requested criteria");
 		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
-	}
+	}*/
 	
 	// This method returns a jsonSchema of the ItinerantMarket class
 	@GetMapping(path = "/metadata", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -74,24 +70,27 @@ public class ItinerantMarketController {
 	// This method returns statistics of the requested fields (more than one argument must be
 	// separated with ',')
 	@GetMapping(path = "/stats", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vector<FieldStatistic>> getStats(@RequestParam String field) {
+	public ResponseEntity<Vector<FieldStatistic>> getStats(@RequestParam String field) 
+			throws NullPointerException {
 		Vector<FieldStatistic> fStat = itinerantMarketService.getStats(field);
+		if(fStat.isEmpty()) throw new NullPointerException("Null statistic field");
 		return new ResponseEntity<Vector<FieldStatistic>>(fStat, HttpStatus.OK);	
 	}
 
 	// This method requests a filter object for each field and it returns the complete list of
 	// itinerant markets with this filter
-	@PostMapping(path = "/data/filter", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vector<ItinerantMarket>> filterData(@RequestBody Vector<RequestConditionalFilter> filters) {
+	@PostMapping(path = "/data/cfilter", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Vector<ItinerantMarket>> filterData(@RequestBody Vector<RequestConditionalFilter> filters) 
+			throws ResourceNotFoundException {
 		Vector<ItinerantMarket> iMa = itinerantMarketService.getConditionalFilter(filters);
+		if(iMa.isEmpty()) throw new ResourceNotFoundException("No resources corresponding requested criteria");
 		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
 	}
 	
 	//Vector<ItinerantMarket> filters, boolean in
-	@PostMapping(path = "/datai", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/data/lfilter", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> filtersItinerantMarket(@RequestBody RequestLogicalFilter filter) 
 			throws ResourceNotFoundException {
-		//RequestLogicalFilter filter = new RequestLogicalFilter(filters,in);
 		System.out.println(filter.getParam().toString() + filter.getIn());
 		Vector<ItinerantMarket> iMa = itinerantMarketService.getLogicalFilter(filter);
 		if (iMa.isEmpty()) throw new ResourceNotFoundException("No resources correspinding requested criteria");

@@ -276,7 +276,7 @@ public class IMServiceImplementation implements ItinerantMarketService {
 						i.getEqual(), returnIM, i.getNameField());
 				break;
 			default:
-				throw new NotExistingFilterException();
+				throw new NotExistingFilterException("Filter doesn't exist");
 			}
 		}
 		return returnIM;
