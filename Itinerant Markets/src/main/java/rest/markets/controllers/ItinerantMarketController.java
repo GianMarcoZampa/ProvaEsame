@@ -80,7 +80,7 @@ public class ItinerantMarketController {
 	// This method requests a filter object for each field and it returns the complete list of
 	// itinerant markets with this filter
 	@PostMapping(path = "/data/cfilter", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vector<ItinerantMarket>> filterData(@RequestBody Vector<RequestConditionalFilter> filters) 
+	public ResponseEntity<Vector<ItinerantMarket>> getConditionalFilter(@RequestBody Vector<RequestConditionalFilter> filters) 
 			throws ResourceNotFoundException {
 		Vector<ItinerantMarket> iMa = itinerantMarketService.getConditionalFilter(filters);
 		if(iMa.isEmpty()) throw new ResourceNotFoundException("No resources corresponding requested criteria");
@@ -89,7 +89,7 @@ public class ItinerantMarketController {
 	
 	//Vector<ItinerantMarket> filters, boolean in
 	@PostMapping(path = "/data/lfilter", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vector<ItinerantMarket>> filtersItinerantMarket(@RequestBody RequestLogicalFilter filter) 
+	public ResponseEntity<Vector<ItinerantMarket>> getLogicalFilter(@RequestBody RequestLogicalFilter filter) 
 			throws ResourceNotFoundException {
 		System.out.println(filter.getParam().toString() + filter.getIn());
 		Vector<ItinerantMarket> iMa = itinerantMarketService.getLogicalFilter(filter);
