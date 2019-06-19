@@ -96,16 +96,16 @@ The calculated stats are:
     	
 	    	"in":true
     }
-Sending only one element in the ***param*** arraywill return an array of ItinerantMarket which contains only elements with the specified value in the not null fields.
+Sending only one element in the ***param*** array will return an array of ItinerantMarket which contains only elements with the specified value in the not null fields.
 Sending more than one element will return an array which either the values.
-The boolean ***in*** will specify if the request is a not request. In this case the filter will return an array of elements which doesn't contain the values in the request body.
+The boolean ***in*** will specify if the request is a *not* request. In this case the filter will return an array of elements which doesn't contain the values in the request body.
 
 ## Conditional Filter Example
 This is an example for a /cfilter POST request
 
     http://localhost:8080/data/cfilter
 
- The body of  the request may contain an array of conditional filters:
+ The body of the request may contain an array of conditional filters:
 
      [
     	{
@@ -125,13 +125,13 @@ This is an example for a /cfilter POST request
     	}
     ]
 The ***nameField*** parameter will contain the field to which the filter is applied.
-The ***filterType*** paramenter will contain the kind of filter requested. It could be: 
+The ***filterType*** parameter will contain the kind of filter requested. It could be: 
 
  - **$gt,minValue**, greater than the value in minValue;
  - **$lt,maxValue**, less than the value in maxValue;
  - **$bt,minValue,maxValue**, between minValue and maxValue.
 
-The ***equal*** parameter is a boolean. If true all the limits of the filter are included as part of the response, else they are excluded.
+The ***equal*** parameter is a boolean. If true, all the limits of the filter are included as part of the response, else, they are excluded.
 
-Although there is no limits to the applied filters, requesting more than one ilter for each field is not reccomended. 
+Although there is no limits to the applied filters, requesting more than one filter for each field is not reccomended. 
 
