@@ -12,7 +12,6 @@ import rest.markets.utils.filters.RequestLogicalFilter;
 public interface ItinerantMarketService {
 	
 	Vector<ItinerantMarket> getAll();
-	Vector<ItinerantMarket> getRequestedItinerantMarket(ItinerantMarket requestedIM);
 	JsonSchema getMetadata();
 	Vector<FieldStatistic> getStats(String requestedStats);
 	Vector<ItinerantMarket> getConditionalFilter(Vector<RequestConditionalFilter> requestedFilter);
