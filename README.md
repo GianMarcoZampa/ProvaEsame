@@ -6,9 +6,13 @@ This API elaborates data from [dati.lazio.it](http://dati.lazio.it/catalog/datas
 
 ![Use case Diagram](https://lh3.googleusercontent.com/U0ptTLMbYW2Bze9x1EjsWd_eUhL56Pv0eQUAAXNq1u3IG7VeGd5CMWVVK86WCAG70CL-WjmHnmU "Use Case Diagram")
 
+[*for higher resolution*](https://drive.google.com/open?id=1CE5xuEbxI863LohV2P2lNkLxhkA9CWYb)
+
 This UML Use Case Diagram explains how the application works. When a user sends a request to the rest controller, it calls the service. The service elaborates the data in the collection and if no collection exists it creates a new one from the file. The results return to the controller and it sends them back to the user.
 
 ![Class Diagram](https://lh3.googleusercontent.com/XJDnXbyIfx2APcS1KCfDwPqUziexK0k85NTsHe2U_Wo1xvcJkm3EIZ9MD4kPFtIqfmzBgfMuQXI)
+
+[*for higher resolution*](https://drive.google.com/open?id=1w7jZVz99Q9goVO0lj3NWcv9z4jRqLY_P)
 
 This UML Class Diagram represents how the application is structured.
 
