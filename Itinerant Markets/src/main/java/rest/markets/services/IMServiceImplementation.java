@@ -24,7 +24,8 @@ import rest.markets.utils.filters.RequestConditionalFilter;
 import rest.markets.utils.filters.RequestLogicalFilter;
 import rest.markets.utils.statistics.*;
 
-/**This class is the implementation of ItinerantMarketService
+/**
+ * This class is the implementation of ItinerantMarketService
  * @see ItinerantMarketService
  */
 @Service
@@ -38,10 +39,11 @@ public class IMServiceImplementation implements ItinerantMarketService {
 	// This Vector contains all the data from the file ItinerantMarket.csv
 	Vector<ItinerantMarket> itMaList = new Vector<ItinerantMarket>();
 	
-	/** This method create a vector of ItinerantMarket object that is used for managing data.
-	 *  It uses the buffer reader for catching attributes from the file reading it line per line. 
-	 *  If the line contains an empty field it doesn't add the line in the vector and it increments
-	 *  the error line variable 
+	/** 
+	 * This method create a vector of ItinerantMarket object that is used for managing data.
+	 * It uses the buffer reader for catching attributes from the file reading it line per line. 
+	 * If the line contains an empty field it doesn't add the line in the vector and it increments
+	 * the error line variable 
 	 * @throws File Not Found Exception when the file path is null.
 	 * @throws IO Exception 
 	 * @throws General Exception  

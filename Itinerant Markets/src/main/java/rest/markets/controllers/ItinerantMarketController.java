@@ -18,7 +18,8 @@ import rest.markets.utils.statistics.FieldStatistic;
 import rest.markets.utils.filters.RequestConditionalFilter;
 import rest.markets.utils.filters.RequestLogicalFilter;
 
-/**This class gets the request send from user and invokes the 
+/**
+ * This class gets the request send from user and invokes the 
  * {@link ItinerantMarketService} to get the response.
  */
 @RestController
@@ -26,7 +27,8 @@ public class ItinerantMarketController {
 	
 	@Autowired ItinerantMarketService itinerantMarketService;
 	
-	/**This method invokes {@link ItinerantMarketService} and
+	/**
+	 * This method invokes {@link ItinerantMarketService} and
 	 * it returns all the object in the service.
 	 * @return all the data in the data set
 	 * @throws NullPointerException if no elements are in the data set
@@ -39,11 +41,12 @@ public class ItinerantMarketController {
 	}
 
 
-	/** This method invokes {@link ItinerantMarketService} and
+	/** 
+	 * This method invokes {@link ItinerantMarketService} and
 	 * it returns a jsonSchema of the {@link ItinerantMarket} class.
 	 * @return metadata of the ItinerantMarket class
 	 * @throws NullPointerException if errors occurs in the creation of the JSON schema
-	 * */
+	 */
 	@GetMapping(path = "/metadata", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<JsonSchema> getMetadata() throws NullPointerException {
 		
@@ -52,7 +55,8 @@ public class ItinerantMarketController {
 		return new ResponseEntity<JsonSchema>(jSchema, HttpStatus.OK);
 	}
 
-	/**This method invokes {@link ItinerantMarketService} and
+	/**
+	 * This method invokes {@link ItinerantMarketService} and
 	 * it returns the statistics of the requested fields.
 	 * @see itinerantMarketService
 	 * @param field requested parameters (more than one argument must be separated with ',')
@@ -67,7 +71,8 @@ public class ItinerantMarketController {
 		return new ResponseEntity<Vector<FieldStatistic>>(fStat, HttpStatus.OK);	
 	}
 
-	/**This method invokes {@link ItinerantMarketService} and 
+	/**
+	 * This method invokes {@link ItinerantMarketService} and 
 	 * it returns all the {@link ItinerantMarket} objects that 
 	 * matches the requested conditional filter.
 	 * @param filters this vector contains all the filter requested
@@ -82,7 +87,8 @@ public class ItinerantMarketController {
 		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
 	}
 	
-	/**This method invokes {@link ItinerantMarketService} and 
+	/**
+	 * This method invokes {@link ItinerantMarketService} and 
 	 * it returns all the {@link ItinerantMarket} objects that 
 	 * matches the requested logical filter.
 	 * @param filter it contains all the filter requested
