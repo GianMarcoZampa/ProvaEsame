@@ -1,5 +1,8 @@
 package rest.markets.resources;
 
+/**Class that contains all the data attributes 
+ *
+ */
 public class ItinerantMarket {
 	
 	private String comune;
@@ -89,7 +92,11 @@ public class ItinerantMarket {
 				+ prodStats + "]";
 	}
 
-	// Equals
+	/**Method used for comparison.
+	 * <p>
+	 * @param obj Object received with the controller
+	 * @return true if the input object equals the itinerantMarket object in every field, false otherwise.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof ItinerantMarket)) return false;
@@ -103,7 +110,11 @@ public class ItinerantMarket {
 		else return true;
 	}
 
-	// This method is similar to equals but it excludes null fields
+	/** This method is similar to equals but it excludes null fields.
+	 * <p>
+	 * @param obj Object received with the controller
+	 * @return true if itinerantMarket equals the object excluding null fields, false otherwise.
+	 */
 	public boolean paramEquals(Object obj) {
 		if(!(obj instanceof ItinerantMarket)) return false;
 		if(!(((ItinerantMarket) obj).getComune()==null) && !(this.comune.equals(((ItinerantMarket) obj).getComune()))) return false;

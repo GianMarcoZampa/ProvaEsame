@@ -23,8 +23,7 @@ import rest.markets.utils.filters.RequestLogicalFilter;
 @RestController
 public class ItinerantMarketController {
 	
-	@Autowired
-	ItinerantMarketService itinerantMarketService
+	@Autowired ItinerantMarketService itinerantMarketService;
 	/**This method returns all the object in the service
 	 * @return show all the data in the body response
 	 * @throws NullPointerException

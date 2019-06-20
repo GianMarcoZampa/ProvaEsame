@@ -24,7 +24,9 @@ import rest.markets.utils.filters.RequestConditionalFilter;
 import rest.markets.utils.filters.RequestLogicalFilter;
 import rest.markets.utils.statistics.*;
 
-
+/**This class is the implementation of ItinerantMarketService
+ * @see ItinerantMarketService
+ */
 @Service
 public class IMServiceImplementation implements ItinerantMarketService {
 	
@@ -36,7 +38,14 @@ public class IMServiceImplementation implements ItinerantMarketService {
 	// This Vector contains all the data from the file ItinerantMarket.csv
 	Vector<ItinerantMarket> itMaList = new Vector<ItinerantMarket>();
 	
-	// This method create the itMaList that is used for managing data
+	/** This method create a vector of ItinerantMarket object that is used for managing data.
+	 *  It uses the buffer reader for catching attributes from the file reading it line per line. 
+	 *  If the line contains an empty field it doesn't add the line in the vector and it increments
+	 *  the error line variable 
+	 * @throws File Not Found Exception when the file path is null.
+	 * @throws IO Exception if stream to file cannot be written to or closed
+	 * @throws General Exception when something else wrong happens 
+	 */
 	private void createList() {
 		
 		File fileOut = new File(ItinerantMarketsApplication.PATH);
@@ -111,7 +120,9 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		}
 	}
 
-	// This method return the entire list of ItinerantMarket
+	/** This method return the entire list of ItinerantMarket
+	 * 
+	 */
 	@Override
 	public Vector<ItinerantMarket> getAll() {
 		
@@ -121,7 +132,10 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		return this.itMaList;
 	}
 
-	// This method creates a JsonSchema from ItinerantMarket.class
+	/** This method creates a JsonSchema from ItinerantMarket.class
+	 * @return schema which is the description of the attributes of ItinerantMarket class
+	 * @throws JsonMappingException when something goes wrong during the Json mapping
+	 */
 	@Override
 	public JsonSchema getMetadata() {
 		
@@ -136,7 +150,14 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		return schema;
 	}
 	
-	// This method obtains statistics from the input field
+	/** This method obtains statistics from input fields using classes that are in 
+	 * rest.markets.utils.statistics
+	 * @see rest.markets.utils.statistics
+	 * @param field fields in itinerant market that its statistics you are looking for
+	 * @return returnStatistics vector where all the statistic for fields are implemented
+	 * @throws NotExistingFieldException  if the input field doesn't exist
+	 * @see rest.markets.exceptions.NotExistingFieldException
+	 */
 	public Vector<FieldStatistic> getStats(String field) throws NotExistingFieldException {
 		
 		String[] numFieldRequested = field.split(",");
