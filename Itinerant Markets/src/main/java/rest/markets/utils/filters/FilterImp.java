@@ -6,7 +6,6 @@ import java.util.Vector;
 
 import org.springframework.stereotype.Service;
 
-import rest.markets.exceptions.NotExistingFieldException;
 import rest.markets.resources.ItinerantMarket;
 import rest.markets.resources.ItinerantMarketStats;
 

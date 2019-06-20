@@ -18,15 +18,18 @@ import rest.markets.utils.statistics.FieldStatistic;
 import rest.markets.utils.filters.RequestConditionalFilter;
 import rest.markets.utils.filters.RequestLogicalFilter;
 
-/**The ItinerantMarketController is a class that launch the spring application using a rest controller and it creates all the requests
+/**This class gets the request send from user and invokes the 
+ * {@link ItinerantMarketService} to get the response.
  */
 @RestController
 public class ItinerantMarketController {
 	
 	@Autowired ItinerantMarketService itinerantMarketService;
-	/**This method returns all the object in the service
-	 * @return show all the data in the body response
-	 * @throws NullPointerException
+	
+	/**This method invokes {@link ItinerantMarketService} and
+	 * it returns all the object in the service.
+	 * @return all the data in the data set
+	 * @throws NullPointerException if no elements are in the data set
 	 */
 	@GetMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> getAll() throws NullPointerException {
@@ -36,9 +39,10 @@ public class ItinerantMarketController {
 	}
 
 
-	/** This method returns a jsonSchema of the ItinerantMarket class
-	 * @return metadata of the ItinerantMarketService class
-	 * @throws NullPointerException
+	/** This method invokes {@link ItinerantMarketService} and
+	 * it returns a jsonSchema of the {@link ItinerantMarket} class.
+	 * @return metadata of the ItinerantMarket class
+	 * @throws NullPointerException if errors occurs in the creation of the JSON schema
 	 * */
 	@GetMapping(path = "/metadata", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<JsonSchema> getMetadata() throws NullPointerException {
@@ -48,11 +52,12 @@ public class ItinerantMarketController {
 		return new ResponseEntity<JsonSchema>(jSchema, HttpStatus.OK);
 	}
 
-	/**This method returns statistics using the interface itinerantMarketService
+	/**This method invokes {@link ItinerantMarketService} and
+	 * it returns the statistics of the requested fields.
 	 * @see itinerantMarketService
-	 * @param field requested field(more than one argument must be separated with ',')
+	 * @param field requested parameters (more than one argument must be separated with ',')
 	 * @return the statics for field 
-	 * @throws NullPointerException when field doesn't exist
+	 * @throws NullPointerException if field has no statistics
 	 */
 	@GetMapping(path = "/stats", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<FieldStatistic>> getStats(@RequestParam String field) 
@@ -62,11 +67,12 @@ public class ItinerantMarketController {
 		return new ResponseEntity<Vector<FieldStatistic>>(fStat, HttpStatus.OK);	
 	}
 
-	/**This method requests a filter object for each field and it returns the complete list of itinerant markets with this filter
-	 * 
-	 * @param filters 
-	 * @return
-	 * @throws ResourceNotFoundException
+	/**This method invokes {@link ItinerantMarketService} and 
+	 * it returns all the {@link ItinerantMarket} objects that 
+	 * matches the requested conditional filter.
+	 * @param filters this vector contains all the filter requested
+	 * @return all the data that matches the filter
+	 * @throws ResourceNotFoundException if no resources correspond to requested criteria
 	 */
 	@PostMapping(path = "/data/cfilter", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> getConditionalFilter(@RequestBody Vector<RequestConditionalFilter> filters) 
@@ -76,7 +82,13 @@ public class ItinerantMarketController {
 		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
 	}
 	
-	//Vector<ItinerantMarket> filters, boolean in
+	/**This method invokes {@link ItinerantMarketService} and 
+	 * it returns all the {@link ItinerantMarket} objects that 
+	 * matches the requested logical filter.
+	 * @param filter it contains all the filter requested
+	 * @return all the data that matches the filter
+	 * @throws ResourceNotFoundException if no resources correspond to requested criteria
+	 */
 	@PostMapping(path = "/data/lfilter", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vector<ItinerantMarket>> getLogicalFilter(@RequestBody RequestLogicalFilter filter) 
 			throws ResourceNotFoundException {
