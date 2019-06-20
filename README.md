@@ -114,17 +114,17 @@ This is an example for a /cfilter POST request
     		"equal" : false
     	},
     	{
-    		"nameField" : "totalStats.total",
+    		"nameField" : "totalStats,total",
     		"filterType": "$lt,1",
     		"equal" : false
     	},
     	{
-    		"nameField" : "foodStats.total",
+    		"nameField" : "foodStats,total",
     		"filterType": "$gt,100",
     		"equal" : true
     	}
     ]
-The ***nameField*** parameter will contain the field to which the filter is applied.
+The ***nameField*** parameter will contain the field to which the filter is applied. If the field is an object must be also specified  the attribute of that object separeted with a commar (e.g. totalStats,attivations).
 The ***filterType*** parameter will contain the kind of filter requested. It could be: 
 
  - **$gt,minValue**, greater than the value in minValue;
