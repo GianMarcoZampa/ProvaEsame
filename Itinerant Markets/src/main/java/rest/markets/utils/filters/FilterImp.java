@@ -6,9 +6,12 @@ import java.util.Vector;
 
 import org.springframework.stereotype.Service;
 
+import rest.markets.exceptions.NotExistingFieldException;
 import rest.markets.resources.ItinerantMarket;
 import rest.markets.resources.ItinerantMarketStats;
 
+/**This is the implementation of the interface Filter
+ */
 @Service
 public class FilterImp implements Filter {
 
@@ -30,7 +33,6 @@ public class FilterImp implements Filter {
 			
 		}
 
-		
 		// Parameters checking
 		for(ItinerantMarket i:data) {
 			try {

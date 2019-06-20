@@ -3,7 +3,10 @@ package rest.markets.utils.statistics;
 import java.util.HashMap;
 import java.util.Vector;
 
-
+/**This interface includes all the statics for the field, both numerical and number 
+ * of repetition for string
+ *
+ */
 public interface StatisticCalcolus {
 	
 	double avg(Vector<Double> toAvg);

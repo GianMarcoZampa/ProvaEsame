@@ -1,5 +1,8 @@
 package rest.markets.utils.statistics;
 
+/**It contains the field name for the statistics
+ *
+ */
 public class FieldStatistic {
 	
 	private String fieldName;

@@ -9,7 +9,7 @@ import rest.markets.utils.statistics.FieldStatistic;
 import rest.markets.utils.filters.RequestConditionalFilter;
 import rest.markets.utils.filters.RequestLogicalFilter;
 
-/**Interface that is used for everything that concerns the elaboration of itinerant markets data
+/**Interface that includes everything that concerns the elaboration of itinerant markets data
  *
  */
 public interface ItinerantMarketService {

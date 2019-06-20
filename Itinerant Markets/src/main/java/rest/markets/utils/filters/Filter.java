@@ -4,6 +4,9 @@ import java.util.Vector;
 
 import rest.markets.resources.ItinerantMarket;
 
+/**Interface that includes both logical and conditional filter abstract methods
+ *
+ */
 public interface Filter {
 	
 	// Numerical filters

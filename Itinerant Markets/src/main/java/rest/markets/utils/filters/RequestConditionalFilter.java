@@ -1,5 +1,8 @@
 package rest.markets.utils.filters;
 
+/**In this class there are all the parameters for filtering data with a conditional filter
+ *
+ */
 public class RequestConditionalFilter {
 	
 	private String nameField;

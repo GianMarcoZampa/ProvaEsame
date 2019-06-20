@@ -2,7 +2,9 @@ package rest.markets.utils;
 
 import java.io.*;
 import java.net.*;
-
+/**This method does the download of the file
+ *
+ */
 public class Download implements Runnable{
 	
 	private String link;
