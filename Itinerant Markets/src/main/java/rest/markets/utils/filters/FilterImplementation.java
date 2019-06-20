@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import rest.markets.resources.ItinerantMarket;
 
-@Service
+//@Service
 public class FilterImplementation implements Filter {
 
 	@Override
