@@ -35,42 +35,13 @@ public class ItinerantMarketController {
 		if (itMarket.isEmpty())	throw new NullPointerException("No elements in the ItinerantMarket collection");
 		return new ResponseEntity<Vector<ItinerantMarket>>(itMarket,HttpStatus.OK);
 	}
-<<<<<<< HEAD
-	
-	/*// This method creates a vector that contains the elements the have the same 
-	// parameters of the body request with a POST request
-	@PostMapping(path = "/data", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vector<ItinerantMarket>> filterItinerantMarket(@RequestBody ItinerantMarket requestedIM) 
-			throws ResourceNotFoundException {
-		
-		Vector<ItinerantMarket> iMa = itinerantMarketService.getRequestedItinerantMarket(requestedIM);
-		if (iMa.isEmpty()) throw new ResourceNotFoundException("No resources correspinding requested criteria");
-		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
-	}
-	
-	
-	// This method creates a vector that contains the elements the have the same 
-	// parameters of the body request with a GET request
-	@GetMapping(path = "/getdata", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vector<ItinerantMarket>> filterGETItinerantMarket(@RequestParam String filter)
-			throws JsonParseException, JsonMappingException, IOException, ResourceNotFoundException {
-		
-		ObjectMapper obMAP = new ObjectMapper();
-		ItinerantMarket requestedIM = obMAP.readValue(filter, ItinerantMarket.class);
-		Vector<ItinerantMarket> iMa = itinerantMarketService.getRequestedItinerantMarket(requestedIM);
-		
-		if (iMa.isEmpty()) throw new ResourceNotFoundException("No resources correspinding requested criteria");
-		return new ResponseEntity<Vector<ItinerantMarket>>(iMa, HttpStatus.OK);
-	}*/
+
 	
 	/** This method returns a jsonSchema of the ItinerantMarket class
 	 * @return metadata of the ItinerantMarketService class
 	 * @throws NullPointerException
 	 */
-=======
 
-	// This method returns a jsonSchema of the ItinerantMarket class
->>>>>>> branch 'master' of https://github.com/GianMarcoZampa/ProvaEsame.git
 	@GetMapping(path = "/metadata", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<JsonSchema> getMetadata() throws NullPointerException {
 		
