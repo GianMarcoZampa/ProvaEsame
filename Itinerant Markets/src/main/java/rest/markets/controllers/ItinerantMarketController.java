@@ -24,7 +24,7 @@ import rest.markets.utils.filters.RequestLogicalFilter;
 public class ItinerantMarketController {
 	
 	@Autowired
-	ItinerantMarketService itinerantMarketService;
+	ItinerantMarketService itinerantMarketService
 	/**This method returns all the object in the service
 	 * @return show all the data in the body response
 	 * @throws NullPointerException
@@ -36,12 +36,11 @@ public class ItinerantMarketController {
 		return new ResponseEntity<Vector<ItinerantMarket>>(itMarket,HttpStatus.OK);
 	}
 
-	
+
 	/** This method returns a jsonSchema of the ItinerantMarket class
 	 * @return metadata of the ItinerantMarketService class
 	 * @throws NullPointerException
-	 */
-
+	 * */
 	@GetMapping(path = "/metadata", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<JsonSchema> getMetadata() throws NullPointerException {
 		
@@ -49,7 +48,6 @@ public class ItinerantMarketController {
 		if(jSchema == null) throw new NullPointerException("No Json schema found");
 		return new ResponseEntity<JsonSchema>(jSchema, HttpStatus.OK);
 	}
-	
 
 	/**This method returns statistics using the interface itinerantMarketService
 	 * @see itinerantMarketService
