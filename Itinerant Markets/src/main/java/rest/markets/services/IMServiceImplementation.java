@@ -110,20 +110,6 @@ public class IMServiceImplementation implements ItinerantMarketService {
 			e.printStackTrace();
 		}
 	}
-	
-	// This method returns the requested ItinerantMarket if it is present in the file
-	@Override
-	public Vector<ItinerantMarket> getRequestedItinerantMarket(ItinerantMarket requestedIM) {
-		
-		Vector<ItinerantMarket> itMaVec = new Vector<ItinerantMarket>();
-		
-		// If the list is empty a new one is created form the file
-		if(itMaList.isEmpty()) createList();
-		
-		// Call filter.in
-		itMaVec = filter.in(requestedIM, true, itMaList);
-		return itMaVec;
-	}
 
 	// This method return the entire list of ItinerantMarket
 	@Override
@@ -298,4 +284,5 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		
 		return returnIM;
 	}
+
 }

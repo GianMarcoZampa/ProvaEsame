@@ -35,6 +35,7 @@ public class ItinerantMarketController {
 		if (itMarket.isEmpty())	throw new NullPointerException("No elements in the ItinerantMarket collection");
 		return new ResponseEntity<Vector<ItinerantMarket>>(itMarket,HttpStatus.OK);
 	}
+<<<<<<< HEAD
 	
 	/*// This method creates a vector that contains the elements the have the same 
 	// parameters of the body request with a POST request
@@ -66,6 +67,10 @@ public class ItinerantMarketController {
 	 * @return metadata of the ItinerantMarketService class
 	 * @throws NullPointerException
 	 */
+=======
+
+	// This method returns a jsonSchema of the ItinerantMarket class
+>>>>>>> branch 'master' of https://github.com/GianMarcoZampa/ProvaEsame.git
 	@GetMapping(path = "/metadata", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<JsonSchema> getMetadata() throws NullPointerException {
 		

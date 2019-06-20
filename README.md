@@ -6,9 +6,13 @@ This API elaborates data from [dati.lazio.it](http://dati.lazio.it/catalog/datas
 
 ![Use case Diagram](https://lh3.googleusercontent.com/U0ptTLMbYW2Bze9x1EjsWd_eUhL56Pv0eQUAAXNq1u3IG7VeGd5CMWVVK86WCAG70CL-WjmHnmU "Use Case Diagram")
 
+[*for higher resolution*](https://drive.google.com/open?id=1CE5xuEbxI863LohV2P2lNkLxhkA9CWYb)
+
 This UML Use Case Diagram explains how the application works. When a user sends a request to the rest controller, it calls the service. The service elaborates the data in the collection and if no collection exists it creates a new one from the file. The results return to the controller and it sends them back to the user.
 
 ![Class Diagram](https://lh3.googleusercontent.com/XJDnXbyIfx2APcS1KCfDwPqUziexK0k85NTsHe2U_Wo1xvcJkm3EIZ9MD4kPFtIqfmzBgfMuQXI)
+
+[*for higher resolution*](https://drive.google.com/open?id=1w7jZVz99Q9goVO0lj3NWcv9z4jRqLY_P)
 
 This UML Class Diagram represents how the application is structured.
 
@@ -92,16 +96,16 @@ The calculated stats are:
     	
 	    	"in":true
     }
-Sending only one element in the ***param*** arraywill return an array of ItinerantMarket which contains only elements with the specified value in the not null fields.
+Sending only one element in the ***param*** array will return an array of ItinerantMarket which contains only elements with the specified value in the not null fields.
 Sending more than one element will return an array which either the values.
-The boolean ***in*** will specify if the request is a not request. In this case the filter will return an array of elements which doesn't contain the values in the request body.
+The boolean ***in*** will specify if the request is a *not* request. In this case the filter will return an array of elements which doesn't contain the values in the request body.
 
 ## Conditional Filter Example
 This is an example for a /cfilter POST request
 
     http://localhost:8080/data/cfilter
 
- The body of  the request may contain an array of conditional filters:
+ The body of the request may contain an array of conditional filters:
 
      [
     	{
@@ -110,24 +114,24 @@ This is an example for a /cfilter POST request
     		"equal" : false
     	},
     	{
-    		"nameField" : "totalStats.total",
+    		"nameField" : "totalStats,total",
     		"filterType": "$lt,1",
     		"equal" : false
     	},
     	{
-    		"nameField" : "foodStats.total",
+    		"nameField" : "foodStats,total",
     		"filterType": "$gt,100",
     		"equal" : true
     	}
     ]
-The ***nameField*** parameter will contain the field to which the filter is applied.
-The ***filterType*** paramenter will contain the kind of filter requested. It could be: 
+The ***nameField*** parameter will contain the field to which the filter is applied. If the field is an object must be also specified  the attribute of that object separeted with a commar (e.g. totalStats,attivations).
+The ***filterType*** parameter will contain the kind of filter requested. It could be: 
 
  - **$gt,minValue**, greater than the value in minValue;
  - **$lt,maxValue**, less than the value in maxValue;
  - **$bt,minValue,maxValue**, between minValue and maxValue.
 
-The ***equal*** parameter is a boolean. If true all the limits of the filter are included as part of the response, else they are excluded.
+The ***equal*** parameter is a boolean. If true, all the limits of the filter are included as part of the response, else, they are excluded.
 
-Although there is no limits to the applied filters, requesting more than one ilter for each field is not reccomended. 
+Although there is no limits to the applied filters, requesting more than one filter for each field is not reccomended. 
 
