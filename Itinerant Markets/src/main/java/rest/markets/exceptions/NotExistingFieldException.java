@@ -1,5 +1,9 @@
 package rest.markets.exceptions;
 
+/**
+ * This class inherits from RuntimeExcepion and implements an exception that occurs 
+ * when a wrong field name is sent in a user request.
+ */
 public class NotExistingFieldException extends RuntimeException {
 
 	private static final long serialVersionUID = 2L;

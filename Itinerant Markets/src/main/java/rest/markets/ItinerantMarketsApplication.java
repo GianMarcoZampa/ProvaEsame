@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import rest.markets.utils.*;
 
-/**This class contains the main of the program.
- * It is used for copying the link for the file. It calls rest.markets.utils.Download.class
- * for the downloading of the file and it saves its path. After that the Spring Application starts 
- * to run
+/**
+ * This class contains the main of the program.
+ * It launches a thread which downloads the file in the main directory of the API 
+ * and it initializes the Spring application to the port 8080.
  */
 @SpringBootApplication
 public class ItinerantMarketsApplication {

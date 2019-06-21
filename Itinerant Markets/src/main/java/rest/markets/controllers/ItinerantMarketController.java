@@ -19,7 +19,7 @@ import rest.markets.utils.filters.RequestConditionalFilter;
 import rest.markets.utils.filters.RequestLogicalFilter;
 
 /**
- * This class gets the request send from user and invokes the 
+ * This class gets the request sent from user and invokes the 
  * {@link ItinerantMarketService} to get the response.
  */
 @RestController

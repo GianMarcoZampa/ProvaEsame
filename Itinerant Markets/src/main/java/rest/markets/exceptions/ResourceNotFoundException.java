@@ -1,5 +1,9 @@
 package rest.markets.exceptions;
 
+/**
+ * This class inherits from RuntimeExcepion and implements an exception that occurs 
+ * when e null vector returns from a data request.
+ */
 public class ResourceNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
