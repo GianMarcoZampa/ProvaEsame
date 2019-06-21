@@ -11,7 +11,7 @@ import rest.markets.utils.filters.RequestLogicalFilter;
 
 /**
  * Interface that includes everything that concerns the elaboration of {@link ItinerantMarket} data.
- * @see rest#markets#controllers#ItinerantMarketController
+ * @see rest.markets.controllers.ItinerantMarketController
  * @see IMServiceImplementation
  */
 public interface ItinerantMarketService {

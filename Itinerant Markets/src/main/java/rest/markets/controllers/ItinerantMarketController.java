@@ -21,8 +21,8 @@ import rest.markets.utils.filters.RequestLogicalFilter;
 /**
  * This class gets the request sent from user and invokes the 
  * {@link ItinerantMarketService} to get the response.
- * @see rest#markets#services#ItinerantMarketService
- * @see rest#markets#services#IMServiceImplementation
+ * @see rest.markets.services.ItinerantMarketService
+ * @see rest.markets.services.IMServiceImplementation
  */
 @RestController
 public class ItinerantMarketController {

@@ -7,13 +7,15 @@ package rest.markets.utils.statistics;
  */
 public class FieldStatistic {
 	
+	// Attributes
 	private String fieldName;
 
+	// Constructor
 	public FieldStatistic(String fieldName) {
 		this.fieldName = fieldName;
 	}
 	
-	// Getters and setters
+	// Getter and setter
 	public String getFieldName() {
 		return fieldName;
 	}

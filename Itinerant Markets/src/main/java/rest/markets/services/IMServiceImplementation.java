@@ -134,7 +134,7 @@ public class IMServiceImplementation implements ItinerantMarketService {
 	}
 
 	/** 
-	 * This method creates a JsonSchema of {@link rest#markets#resources#ItinerantMarket} class.
+	 * This method creates a JsonSchema of {@link rest.markets.resources.ItinerantMarket} class.
 	 * @return schema which is the description of the attributes of ItinerantMarket class.
 	 */
 	@Override
@@ -256,7 +256,7 @@ public class IMServiceImplementation implements ItinerantMarketService {
 
 	/**
 	 * This method filters data with a conditional filter. If the list is empty a new one is created
-	 * @param requestedFilters is a {@link rest#markets#utils#filters#RequestConditionalFilter} 
+	 * @param requestedFilters is a {@link rest.markets.utils.filters.RequestConditionalFilter} 
 	 * with the information desired.
 	 * @return a vector that includes the data after filtering.
 	 * @throws NotExistingFilterException if the input filter doesn't exist.
@@ -298,7 +298,7 @@ public class IMServiceImplementation implements ItinerantMarketService {
 
 	/**
 	 * This method filters data with a logical filter. If the list is empty a new one is created
-	 * @param requestedFilter is a {@link rest#markets#utils#filters#RequestLogicalFilter}
+	 * @param requestedFilter is a {@link rest.markets.utils.filters.RequestLogicalFilter}
 	 * with the information desired.
 	 * @return a vector that includes the data after filtering.
 	 */

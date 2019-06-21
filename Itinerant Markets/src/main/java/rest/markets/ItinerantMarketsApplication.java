@@ -11,8 +11,8 @@ import rest.markets.utils.*;
  * This class contains the main of the program.
  * It launches a thread which downloads the file in the main directory of the API 
  * and it initializes the Spring application to the port 8080.
- * @see rest#markets#controllers#ItinerantMarketController
- * @see rest#markets#services#ItinerantMarketService
+ * @see rest.markets.controllers.ItinerantMarketController
+ * @see rest.markets.services.ItinerantMarketService
  */
 @SpringBootApplication
 public class ItinerantMarketsApplication {

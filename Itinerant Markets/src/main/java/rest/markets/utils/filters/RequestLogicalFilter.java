@@ -5,7 +5,7 @@ import java.util.Vector;
 import rest.markets.resources.ItinerantMarket;
 
 /**This class implement a logical filter request using a vector of 
- * {@link rest#markets#resources#ItinerantMarket} and a boolean variable. 
+ * {@link rest.markets.resources.ItinerantMarket} and a boolean variable. 
  * The vector of parameter contains the desired field values and the 
  * boolean variable indicates if you want to add or to eliminate them.
  * @see Filter
