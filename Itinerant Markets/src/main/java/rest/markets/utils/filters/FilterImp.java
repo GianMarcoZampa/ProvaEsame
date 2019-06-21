@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import rest.markets.resources.ItinerantMarket;
 import rest.markets.resources.ItinerantMarketStats;
 
-/**This is the implementation of the interface Filter
+/**
+ * This is the implementation of the interface Filter
+ * @see Filter
  */
 @Service
 public class FilterImp implements Filter {

@@ -1,7 +1,9 @@
 package rest.markets.utils.statistics;
 
-/**It contains the field name for the statistics
- *
+/**
+ * This class contains the field name for the statistics
+ * @see NumFieldStatistics
+ * @see StringFieldStatistics
  */
 public class FieldStatistic {
 	

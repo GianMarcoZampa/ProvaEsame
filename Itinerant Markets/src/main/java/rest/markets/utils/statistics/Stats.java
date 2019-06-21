@@ -5,14 +5,17 @@ import java.util.Vector;
 
 import org.springframework.stereotype.Service;
 
-/**It implements StatisticCalculus doing all the calculus used for the statistics
+/**
+ * It implements StatisticCalculus doing all the calculus used for the statistics.
+ * @see StatisticCalcolus
  */
 @Service
 public class Stats implements StatisticCalcolus {
 
-	/**Return the average value of the doubles in the Vector
+	/**
+	 * Return the average value of the doubles in the Vector.
 	 * @param toAvg is the vector of double 
-	 * @return avg is the average of the input vector
+	 * @return the average of the input vector
 	 */
 	@Override
 	public double avg(Vector<Double> toAvg) {
@@ -20,9 +23,9 @@ public class Stats implements StatisticCalcolus {
 		return avg;
 	}
 
-	/** Return the minimum value present in the Vector
+	/** Return the minimum value present in the Vector.
 	 * @param toMin is the vector of double 
-	 * @return min is the minimun value of the input vector
+	 * @return the minimum value of the input vector
 	 */
 	@Override
 	public double min(Vector<Double> toMin) {
@@ -33,9 +36,9 @@ public class Stats implements StatisticCalcolus {
 		return min;
 	}
 
-	/** Return the maximum value present in the Vector 
+	/** Return the maximum value present in the Vector. 
 	 * @param toMax is the vector of double
-	 * @return max is the maximun value of the input vector
+	 * @return the maximum value of the input vector
 	 */
 	@Override
 	public double max(Vector<Double> toMax) {
@@ -46,9 +49,9 @@ public class Stats implements StatisticCalcolus {
 		return max;
 	}
 
-	/** Return the sum of the values present in the Vector
+	/** Return the sum of the values present in the Vector.
 	 * @param toSum is the vector of double
-	 * @return sum is the sum of all value in input vector
+	 * @return the sum of all value in input vector
 	 */
 	@Override
 	public double sum(Vector<Double> toSum) {
@@ -59,9 +62,9 @@ public class Stats implements StatisticCalcolus {
 		return sum;
 	}
 	
-	/** Return the standard deviation of the values in the Vector
+	/** Return the standard deviation of the values in the Vector.
 	 * @param toStd is the vector of double
-	 * @return std is the standard deviation of the input vector
+	 * @return the standard deviation of the input vector
 	 */
 	@Override
 	public double std(Vector<Double> toStd) {
@@ -78,7 +81,7 @@ public class Stats implements StatisticCalcolus {
 
 	/** Return an HashMap which contains the number of repetitions(value) for each String(key)
 	 * @param toRep vector of string where you are searching
-	 * @return returnHashValue is the number of repetition of the string you are searching in the input vector
+	 * @return the number of repetition for each string in the input vector
 	 */
 	@Override
 	public HashMap<String, Integer> repetition(Vector<String> toRep) {

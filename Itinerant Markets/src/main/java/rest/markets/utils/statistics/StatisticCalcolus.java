@@ -3,9 +3,10 @@ package rest.markets.utils.statistics;
 import java.util.HashMap;
 import java.util.Vector;
 
-/**This interface includes all the statics for the field, both numerical and number 
- * of repetition for string
- *
+/**
+ * This interface includes all the abstract methods to calculate statistics,
+ * for numerical and string fields.
+ * @see Stats
  */
 public interface StatisticCalcolus {
 	

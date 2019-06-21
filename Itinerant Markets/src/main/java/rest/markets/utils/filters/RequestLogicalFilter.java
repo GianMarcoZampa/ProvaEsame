@@ -4,9 +4,12 @@ import java.util.Vector;
 
 import rest.markets.resources.ItinerantMarket;
 
-/**This class creates the logical filter using a vector of parameter and a boolean 
- * variable. The vector of parametere are the one you're looking for while the 
- * boolean variable indicates if you want to add them or to eliminate from the quest
+/**This class implement a logical filter request using a vector of 
+ * {@link rest#markets#resources#ItinerantMarket} and a boolean variable. 
+ * The vector of parameter contains the desired field values and the 
+ * boolean variable indicates if you want to add or to eliminate them.
+ * @see Filter
+ * @see RequestLogicalFilter
  */
 public class RequestLogicalFilter {
 

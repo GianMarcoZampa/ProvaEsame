@@ -1,5 +1,10 @@
 package rest.markets.utils.statistics;
 
+/**
+ * This class inherits from {@link FieldStatitics} and it encapsulates 
+ * the response to a numeric field statistic request.
+ * @see FieldStatistic
+ */
 public class NumFieldStatistic extends FieldStatistic {
 
 	private String avg;

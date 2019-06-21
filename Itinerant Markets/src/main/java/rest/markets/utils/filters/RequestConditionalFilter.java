@@ -1,7 +1,9 @@
 package rest.markets.utils.filters;
 
-/**In this class there are all the parameters for filtering data with a conditional filter
- *
+/**
+ * In this class there are all the parameters for filtering data with a conditional filter
+ * @see Filter
+ * @see RequestLogicalFilter
  */
 public class RequestConditionalFilter {
 	

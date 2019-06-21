@@ -2,6 +2,11 @@ package rest.markets.utils.statistics;
 
 import java.util.HashMap;
 
+/**
+ * This class inherits from {@link FieldStatitics} and it encapsulates 
+ * the response to a string field statistic request.
+ * @see FieldStatistic
+ */
 public class StringFieldStatistic extends FieldStatistic {
 
 	private HashMap<String, Integer> repetition;

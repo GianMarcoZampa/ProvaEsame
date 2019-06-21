@@ -2,8 +2,9 @@ package rest.markets.utils;
 
 import java.io.*;
 import java.net.*;
-/**This method does the download of the file
- *
+
+/**
+ * This runnable class downloads the file
  */
 public class Download implements Runnable{
 	
@@ -16,7 +17,9 @@ public class Download implements Runnable{
 		this.out = out;
 	}
 
-	// Runnable method that download the file from the URL link to the out location
+	/**
+	 * This method downloads the file when the thread is launched.
+	 */
 	@Override
 	public synchronized void run() {
 		
