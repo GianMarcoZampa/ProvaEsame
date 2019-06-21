@@ -1,7 +1,7 @@
 package rest.markets.utils.statistics;
 
 /**
- * This class inherits from {@link FieldStatitics} and it encapsulates 
+ * This class inherits from {@link FieldStatistic} and it encapsulates 
  * the response to a numeric field statistic request.
  * @see FieldStatistic
  */

@@ -3,7 +3,7 @@ package rest.markets.utils.statistics;
 import java.util.HashMap;
 
 /**
- * This class inherits from {@link FieldStatitics} and it encapsulates 
+ * This class inherits from {@link FieldStatistic} and it encapsulates 
  * the response to a string field statistic request.
  * @see FieldStatistic
  */
