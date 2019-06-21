@@ -1,7 +1,7 @@
 package rest.markets.resources;
 
-/**Class that contains all the data attributes 
- *
+/**
+ * This class that contains all the data attributes.
  */
 public class ItinerantMarket {
 	
@@ -92,10 +92,11 @@ public class ItinerantMarket {
 				+ prodStats + "]";
 	}
 
-	/**Method used for comparison.
-	 * <p>
-	 * @param obj Object received with the controller
-	 * @return true if the input object equals the itinerantMarket object in every field, false otherwise.
+	/**
+	 * This method compares the object with a generic object.
+	 * @param obj object to be compared
+	 * @return true if the input object equals the itinerantMarket
+	 * object in every field, false otherwise.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -110,10 +111,11 @@ public class ItinerantMarket {
 		else return true;
 	}
 
-	/** This method is similar to equals but it excludes null fields.
-	 * <p>
-	 * @param obj Object received with the controller
-	 * @return true if itinerantMarket equals the object excluding null fields, false otherwise.
+	/** 
+	 * This method compares the object with a generic object, and it excludes null fields .
+	 * @param obj object to be compared
+	 * @return true if the itinerantMarket object equals the input
+	 * object excluding null fields, false otherwise.
 	 */
 	public boolean paramEquals(Object obj) {
 		if(!(obj instanceof ItinerantMarket)) return false;

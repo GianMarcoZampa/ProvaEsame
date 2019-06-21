@@ -1,7 +1,8 @@
 package rest.markets.resources;
 
-/**This is a class with the statistics of itinerant market. It contains the total number,
- * the number of attivation and the number of cessation
+/**
+ * This class encapsulates the typical statistics of itinerant market. 
+ * It contains the total number, the number of activations and the number of cessations
  */
 public class ItinerantMarketStats {
 	
@@ -50,10 +51,11 @@ public class ItinerantMarketStats {
 				+ "]";
 	}
 
-	/**Method used for comparison.
-	 * <p>
-	 * @param obj Object received with the controller
-	 * @return true if the input object equals the itinerantMarket object in every field, false otherwise.
+	/**
+	 * This method compares the object with a generic object.
+	 * @param obj object to be compared
+	 * @return true if the input object equals the itinerantMarketStats
+	 * object in every field, false otherwise.
 	 */
 	@Override
 	public boolean equals(Object obj) {
