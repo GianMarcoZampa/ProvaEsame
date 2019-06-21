@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"rest.markets.utils.filters"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"rest.markets"},{"l":"rest.markets.controllers"},{"l":"rest.markets.exceptions"},{"l":"rest.markets.resources"},{"l":"rest.markets.services"},{"l":"rest.markets.utils"},{"l":"rest.markets.utils.filters"},{"l":"rest.markets.utils.statistics"}]

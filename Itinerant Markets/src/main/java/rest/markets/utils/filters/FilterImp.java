@@ -10,25 +10,22 @@ import rest.markets.resources.ItinerantMarket;
 import rest.markets.resources.ItinerantMarketStats;
 
 /**
- * This is the implementation of the interface Filter
+ * This class is the implementation of {@link Filter} interface.
  * @see Filter
  */
 @Service
 public class FilterImp implements Filter {
 
 	/**
-	 * This method creates a vector of elements with the matches field are greater or equal 
+	 * This method creates a vector of elements in which the requested field is greater or equal 
 	 * than the input value "linf" (conditional filter)
 	 * @param linf is the lower limits of the value
 	 * @param equal is set as true if linf is included in the comparison,
 	 * false otherwise
 	 * @param data is the vector of elements you want to filter
 	 * @param field is the selected field for filtering
-	 * @return filteredMarket is a vector which contains all the elements in data with 
+	 * @return a vector that contains all the elements in data with 
 	 * field element greater (or equal if equal is true) than linf
-	 * @throws IllegalArgumentException to indicate that a method has been passed an illegal 
-	 * or inappropriate argument.
-	 *@throws SecurityException when the user doesn't have the access to some file
 	 */
 	@Override
 	public Vector<ItinerantMarket> gt(int linf, boolean equal, Vector<ItinerantMarket> data, String field) {
@@ -89,18 +86,15 @@ public class FilterImp implements Filter {
 	}
 
 	/**
-	 * This method creates a vector of elements with the matches field are less or equal
+	 * This method creates a vector of elements in which the requested field is less or equal
 	 * than the input value "lsup" (conditional filter)
 	 * @param lsup is the upper limits of the value
 	 * @param equal is set as true if lsup is included in the comparison,
 	 * false otherwise
 	 * @param data is the vector of elements you want to filter
 	 * @param field is the selected field for filtering
-	 * @return filteredMarket is a vector which contains all the elements in data with 
+	 * @return a vector that contains all the elements in data with 
 	 * field element greater (or equal if equal is true) than lsup
-	 * @throws IllegalArgumentException to indicate that a method has been passed an illegal 
-	 * or inappropriate argument.
-	 *@throws SecurityException when the user doesn't have the access to some file
 	 */
 	
 	@Override
@@ -162,19 +156,16 @@ public class FilterImp implements Filter {
 	}
 
 	/**
-	 * This method creates a vector of elements with the matches field included in the parameter
-	 * linf and lsup (conditional filter)
+	 * This method creates a vector of elements in which the requested field is
+	 * included in the parameter linf and lsup (conditional filter)
 	 * @param linf is the lower limits of the value
 	 * @param lsup is the upper limits of the value
 	 * @param equal is set as true if lsup is included in the comparison,
 	 * false otherwise
 	 * @param data is the vector of elements you want to filter
 	 * @param field is the selected field for filtering
-	 * @return filteredMarket is a vector which contains all the elements in data with 
+	 * @return a vector that contains all the elements in data with 
 	 * field element greater (or equal if equal is true) than lsup
-	 * @throws IllegalArgumentException to indicate that a method has been passed an illegal 
-	 * or inappropriate argument
-	 * @throws SecurityException when the user doesn't have the access to some file
 	 */
 	
 	@Override
@@ -210,10 +201,10 @@ public class FilterImp implements Filter {
 	}
 
 	/**
-	 * Method that saves the requestedClass
-	 * @param requestedClass
-	 * @param field
-	 * @return requestedClass
+	 * This method returns the get method for the input field of the input class
+	 * @param requestedClass is the class in which the return method is to find
+	 * @param field is the name of the field of the desired get method
+	 * @return the get method of the input if present, else null;
 	 */
 	
 	public <T> Method getRequestedMethod(Class<T> requestedClass, String field) {

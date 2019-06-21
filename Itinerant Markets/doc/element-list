@@ -1,1 +1,8 @@
+rest.markets
+rest.markets.controllers
+rest.markets.exceptions
+rest.markets.resources
+rest.markets.services
+rest.markets.utils
 rest.markets.utils.filters
+rest.markets.utils.statistics
