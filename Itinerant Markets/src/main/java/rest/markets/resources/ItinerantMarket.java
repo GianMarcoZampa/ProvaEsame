@@ -2,6 +2,7 @@ package rest.markets.resources;
 
 /**
  * This class that contains all the data attributes.
+ * @see ItinerantMarketStats
  */
 public class ItinerantMarket {
 	

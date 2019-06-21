@@ -3,6 +3,7 @@ package rest.markets.resources;
 /**
  * This class encapsulates the typical statistics of itinerant market. 
  * It contains the total number, the number of activations and the number of cessations
+ * @see ItinerantMarket
  */
 public class ItinerantMarketStats {
 	

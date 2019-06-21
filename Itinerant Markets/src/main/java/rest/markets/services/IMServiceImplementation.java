@@ -25,7 +25,7 @@ import rest.markets.utils.filters.RequestLogicalFilter;
 import rest.markets.utils.statistics.*;
 
 /**
- * This class is the implementation of ItinerantMarketService
+ * This class is the implementation of ItinerantMarketService.
  * @see ItinerantMarketService
  */
 @Service
@@ -41,12 +41,9 @@ public class IMServiceImplementation implements ItinerantMarketService {
 	
 	/** 
 	 * This method create a vector of ItinerantMarket object that is used for managing data.
-	 * It uses the buffer reader for catching attributes from the file reading it line per line. 
+	 * It uses the buffer reader for catching attributes from the file reading it line by line. 
 	 * If the line contains an empty field it doesn't add the line in the vector and it increments
-	 * the error line variable 
-	 * @throws File Not Found Exception when the file path is null.
-	 * @throws IO Exception 
-	 * @throws General Exception  
+	 * the error line variable. 
 	 */
 	private void createList() {
 		
@@ -122,8 +119,10 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		}
 	}
 
-	/** This method return the entire list of ItinerantMarket
-	 * 
+	/** 
+	 * This method return the entire list of ItinerantMarket. 
+	 * If the list is empty a new one is created
+	 * @return the entire list of ItinerantMarket in the service.
 	 */
 	@Override
 	public Vector<ItinerantMarket> getAll() {
@@ -134,9 +133,9 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		return this.itMaList;
 	}
 
-	/** This method creates a JsonSchema from ItinerantMarket.class
-	 * @return schema which is the description of the attributes of ItinerantMarket class
-	 * @throws JsonMappingException 
+	/** 
+	 * This method creates a JsonSchema of {@link rest#markets#resources#ItinerantMarket} class.
+	 * @return schema which is the description of the attributes of ItinerantMarket class.
 	 */
 	@Override
 	public JsonSchema getMetadata() {
@@ -152,13 +151,12 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		return schema;
 	}
 	
-	/** This method obtains statistics from input fields using classes that are in 
-	 * rest.markets.utils.statistics
-	 * @see rest.markets.utils.statistics
-	 * @param field fields in itinerant market that its statistics you are looking for
-	 * @return returnStatistics vector where all the statistic for fields are implemented
-	 * @throws NotExistingFieldException  if the input field doesn't exist
-	 * @see {@link rest.markets.exceptions.NotExistingFieldException.class}
+	/** 
+	 * This method obtains statistics from input fields using classes that are in 
+	 * {@link rest.markets.utils.statistics}. If the list is empty a new one is created
+	 * @param field input fields of which statistics are calculated.
+	 * @return a statistics vector which contains all the result for each field.
+	 * @throws NotExistingFieldException  if the input field doesn't exist.
 	 */
 	public Vector<FieldStatistic> getStats(String field) throws NotExistingFieldException {
 		
@@ -256,10 +254,12 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		return returnStatistics;
 	}
 
-	/**This method filters data with a conditional filter.
-	 * @param requestedFilters is an object from RequestConditionalFilter with the information you're looking for.
-	 * @return returnIM which is a vector that includes the data after filtering.
-	 * @throws NotExistingFieldException
+	/**
+	 * This method filters data with a conditional filter. If the list is empty a new one is created
+	 * @param requestedFilters is a {@link rest#markets#utils#filters#RequestConditionalFilter} 
+	 * with the information desired.
+	 * @return a vector that includes the data after filtering.
+	 * @throws NotExistingFilterException if the input filter doesn't exist.
 	 */
 	@Override
 	public Vector<ItinerantMarket> getConditionalFilter(Vector<RequestConditionalFilter> requestedFilters) throws NotExistingFilterException {						
@@ -296,10 +296,11 @@ public class IMServiceImplementation implements ItinerantMarketService {
 		return returnIM;
 	}
 
-	/**This method filters data with a logical filter. If the list is empty a new one is created
-	 * @param requestedFilters is an object from RequestLogicalFilter with the information you're looking for.
-	 * @return returnIM which is a vector that includes the data after filtering.
-	 * @throws NotExistingFieldException
+	/**
+	 * This method filters data with a logical filter. If the list is empty a new one is created
+	 * @param requestedFilter is a {@link rest#markets#utils#filters#RequestLogicalFilter}
+	 * with the information desired.
+	 * @return a vector that includes the data after filtering.
 	 */
 	@Override
 	public Vector<ItinerantMarket> getLogicalFilter(RequestLogicalFilter requestedFilter) {
